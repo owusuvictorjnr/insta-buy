@@ -2,10 +2,8 @@ import { Tabs } from "expo-router";
 import React from "react";
 import { Platform } from "react-native";
 import { HapticTab } from "@/components/HapticTab";
-import { IconSymbol } from "@/components/ui/IconSymbol";
 import TabBarBackground from "@/components/ui/TabBarBackground";
 import { useColorScheme } from "@/hooks/useColorScheme";
-import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import tw from "twrnc";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { FontAwesome } from "@expo/vector-icons";
@@ -24,6 +22,7 @@ export default function TabLayout() {
       <Tabs
         screenOptions={{
           tabBarActiveTintColor: "#1bc464",
+          tabBarInactiveTintColor: "gray",
           headerShown: false,
           tabBarButton: HapticTab,
           tabBarBackground: TabBarBackground,
@@ -44,24 +43,21 @@ export default function TabLayout() {
         <Tabs.Screen
           name="index"
           options={{
-            title: "Home",
-            headerShown: false,
-            tabBarIcon: ({ color }) => (
-              <IconSymbol size={18} name="house.fill" color={color} />
-            ),
+            title: "shop",
+
+            tabBarIcon(props) {
+              return <TabBarIcon {...props} name="shopping-cart" />;
+            },
           }}
         />
         <Tabs.Screen
           name="orders"
           options={{
-            title: "Orders",
-            tabBarIcon: ({ color }) => (
-              <MaterialCommunityIcons
-                name="clipboard-check-outline"
-                size={18}
-                color={color}
-              />
-            ),
+            title: "order",
+
+            tabBarIcon(props) {
+              return <TabBarIcon {...props} name="book" />;
+            },
           }}
         />
       </Tabs>
