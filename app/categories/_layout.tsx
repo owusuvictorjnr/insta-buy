@@ -7,17 +7,17 @@ export default function CategoryLayout() {
   return (
     <Stack>
       <Stack.Screen
-        name="slug"
-        options={{
+        name="[slug]"
+        options={({ navigation }) => ({
           headerShown: false,
           headerLeft: () => {
             return (
-              <TouchableOpacity>
-                <Ionicons />
+              <TouchableOpacity onPress={() => navigation.goBack()}>
+                <Ionicons name="arrow-back" size={24} color="black" />
               </TouchableOpacity>
             );
           },
-        }}
+        })}
       />
     </Stack>
   );
