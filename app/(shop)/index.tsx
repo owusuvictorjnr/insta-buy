@@ -2,6 +2,7 @@ import { StyleSheet, View, Text, FlatList } from "react-native";
 import { PRODUCTS } from "@/assets/products";
 import tw from "twrnc";
 import { ProductListItems } from "@/components/product-list-item";
+import { ListHeader } from "@/components/list-header";
 
 export default function HomeScreen() {
   return (
@@ -11,11 +12,7 @@ export default function HomeScreen() {
         renderItem={({ item }) => <ProductListItems product={item} />}
         keyExtractor={(item) => item.id.toString()}
         numColumns={2}
-        ListHeaderComponent={
-          <Text style={tw`text-center font-bold text-2xl`}>
-            Products
-          </Text>
-        }
+        ListHeaderComponent={ListHeader}
         contentContainerStyle={styles.flatListContent}
         columnWrapperStyle={styles.flatListColumn}
         style={tw`p-5`}
