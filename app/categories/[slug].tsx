@@ -1,8 +1,9 @@
-import { Image, StyleSheet, Text, View } from "react-native";
+import { FlatList, Image, StyleSheet, Text, View } from "react-native";
 import React from "react";
-import { Redirect,  Stack,  useLocalSearchParams } from "expo-router";
+import { Redirect, Stack, useLocalSearchParams } from "expo-router";
 import { CATEGORIES } from "@/assets/category";
 import { PRODUCTS } from "@/assets/products";
+import { ProductListItems } from "@/components/product-list-item";
 
 const Category = () => {
   const { slug } = useLocalSearchParams<{ slug: string }>();
@@ -16,7 +17,19 @@ const Category = () => {
     <View style={styles.container}>
       <Stack.Screen options={{ title: category.name }} />
 
-      <Image source={{uri: category.imageUrl}} style={styles.categoryImage} />
+      <Image source={{ uri: category.imageUrl }} style={styles.categoryImage} />
+
+      <Text style={styles.categoryName}>{category.name}</Text>
+
+      <FlatList
+        data={products}
+        keyExtractor={(item) => item.id.toString()}
+        renderItem={({ item }) => <ProductListItems product={item} />}
+        style={styles.productsList}
+        numColumns={2}
+        columnWrapperStyle={styles.productRow}
+        contentContainerStyle={styles.productsList}
+      />
     </View>
   );
 };
