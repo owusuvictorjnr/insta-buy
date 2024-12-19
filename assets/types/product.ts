@@ -2,7 +2,7 @@ import { ImageSourcePropType } from "react-native";
 import { Category } from "./category";
 
 export type Product = {
-  id: string;
+  id: number;
   title: string;
   slug: string;
   imagesUrl: ImageSourcePropType[];
