@@ -1,38 +1,35 @@
-import { Image, StyleSheet, Platform, View, Text } from "react-native";
-
-import { HelloWave } from "@/components/HelloWave";
-import ParallaxScrollView from "@/components/ParallaxScrollView";
-import { ThemedText } from "@/components/ThemedText";
-import { ThemedView } from "@/components/ThemedView";
-import { SafeAreaView } from "react-native-safe-area-context";
-import { Tabs } from "expo-router";
+import { StyleSheet, View, Text, FlatList } from "react-native";
+import { PRODUCTS } from "@/assets/products";
+import tw from "twrnc";
+import { ProductListItems } from "@/components/product-list-item";
 
 export default function HomeScreen() {
   return (
-    <SafeAreaView>
-      <View>
-        <Text>home</Text>
-        {/* <Tabs.Screen name="index" options={{ headerShown: false }} /> */}
-      </View>
-    </SafeAreaView>
+    <View>
+      <FlatList
+        data={PRODUCTS}
+        renderItem={({ item }) => <ProductListItems product={item} />}
+        keyExtractor={(item) => item.id.toString()}
+        numColumns={2}
+        ListHeaderComponent={
+          <Text style={tw`text-center font-bold text-2xl`}>
+            Products
+          </Text>
+        }
+        contentContainerStyle={styles.flatListContent}
+        columnWrapperStyle={styles.flatListColumn}
+        style={tw`p-5`}
+      />
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
-  titleContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 8,
+  flatListContent: {
+    paddingBottom: 10,
   },
-  stepContainer: {
-    gap: 8,
-    marginBottom: 8,
-  },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: "absolute",
+
+  flatListColumn: {
+    justifyContent: "space-between",
   },
 });
