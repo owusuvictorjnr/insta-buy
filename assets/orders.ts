@@ -5,7 +5,7 @@ export const ORDERS: Order[] = [
     id: "1",
     item: "Order 1",
     details: "Details about order 1",
-    status: "Pending",
+    status: "pending",
     slug: "order-1",
     date: "2024-07-01",
     items: [
