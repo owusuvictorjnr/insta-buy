@@ -11,8 +11,12 @@ import React from "react";
 import { Link } from "expo-router";
 import { FontAwesome } from "@expo/vector-icons";
 import { CATEGORIES } from "@/assets/category";
+import { useCartStore } from "@/store/cart-store";
 
 export const ListHeader = () => {
+  const {getItemsCount} = useCartStore();
+
+
   return (
     <View style={[styles.headerContainer]}>
       {/* user logo, cart & logout */}
@@ -42,7 +46,9 @@ export const ListHeader = () => {
                   />
 
                   <View style={styles.badgeContainer}>
-                    <Text style={styles.badgeText}>{1}</Text>
+                    <Text style={styles.badgeText}>
+                      
+                    </Text>
                   </View>
                 </View>
               )}
